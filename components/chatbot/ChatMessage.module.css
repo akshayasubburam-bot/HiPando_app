@@ -1,0 +1,75 @@
+.row {
+  display: flex;
+  gap: 8px;
+  max-width: 100%;
+}
+
+.rowBot {
+  justify-content: flex-start;
+}
+
+.rowUser {
+  justify-content: flex-end;
+}
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--hp-mint-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  max-width: 78%;
+}
+
+.rowUser .column {
+  align-items: flex-end;
+}
+
+.bubble {
+  padding: 10px 14px;
+  border-radius: var(--hp-radius-md);
+  font-size: 0.88rem;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.bubbleBot {
+  background: var(--hp-mint-100);
+  color: var(--hp-ink);
+  border-bottom-left-radius: 4px;
+}
+
+.bubbleUser {
+  background: var(--hp-primary);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+.properties {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.agentLink {
+  margin-top: 8px;
+  align-self: flex-start;
+  padding: 8px 16px;
+  border-radius: var(--hp-radius-pill);
+  background: var(--hp-primary);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+}

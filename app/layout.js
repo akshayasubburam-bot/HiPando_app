@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import TopNav from "@/components/TopNav";
+import { ChatBotProvider } from "@/components/chatbot/ChatBotProvider";
 
 export const metadata = {
   title: "Hi Pando — Find your place in Dubai",
@@ -12,7 +13,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <TopNav />
-        {children}
+        <ChatBotProvider>{children}</ChatBotProvider>
       </body>
     </html>
   );

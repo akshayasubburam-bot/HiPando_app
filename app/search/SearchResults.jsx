@@ -44,6 +44,7 @@ export default function SearchResults() {
     const purpose = searchParams.get("purpose") || "";
     const type = searchParams.get("type");
     const bedroom = searchParams.get("bedroom");
+    const maxPrice = searchParams.get("maxPrice") || "";
 
     setFilters({
       ...EMPTY_FILTERS,
@@ -51,6 +52,7 @@ export default function SearchResults() {
       purpose,
       types: type ? [type] : [],
       bedrooms: bedroom ? [bedroom] : [],
+      maxPrice,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

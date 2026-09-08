@@ -1,0 +1,25 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+  align-self: flex-start;
+  max-width: 100%;
+}
+
+.chip {
+  padding: 7px 14px;
+  border-radius: var(--hp-radius-pill);
+  border: 1px solid var(--hp-primary);
+  background: var(--hp-mint-50);
+  color: var(--hp-primary-dark);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.chip:hover {
+  background: var(--hp-primary);
+  color: #fff;
+}

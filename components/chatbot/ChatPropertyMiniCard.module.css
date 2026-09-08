@@ -1,0 +1,49 @@
+.card {
+  display: flex;
+  gap: 10px;
+  background: var(--hp-surface);
+  border: 1px solid var(--hp-line-soft);
+  border-radius: var(--hp-radius-sm);
+  padding: 8px;
+  align-items: center;
+  transition: box-shadow 0.15s ease;
+}
+
+.card:hover {
+  box-shadow: var(--hp-shadow-sm);
+}
+
+.image {
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.price {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--hp-ink);
+}
+
+.title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--hp-charcoal);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.location {
+  font-size: 0.72rem;
+  color: var(--hp-slate);
+}
