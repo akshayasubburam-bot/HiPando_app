@@ -1,0 +1,138 @@
+.wrap {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(251, 253, 252, 0.85);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--hp-line-soft);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  gap: var(--hp-space-5);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  color: var(--hp-ink);
+  flex-shrink: 0;
+}
+
+.mark {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--hp-primary-light), var(--hp-primary-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 800;
+  box-shadow: 0 6px 16px rgba(30, 122, 95, 0.35);
+}
+
+.logoAccent {
+  color: var(--hp-primary);
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: var(--hp-space-6);
+  flex: 1;
+  justify-content: center;
+}
+
+.link {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--hp-charcoal);
+  padding: 8px 4px;
+  position: relative;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--hp-primary);
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+}
+
+.linkActive {
+  color: var(--hp-primary-dark);
+}
+
+.linkActive::after {
+  transform: scaleX(1);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--hp-space-3);
+  flex-shrink: 0;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: 1px solid var(--hp-line);
+  border-radius: 10px;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.mobileMenu {
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--hp-space-3) var(--hp-space-5) var(--hp-space-4);
+  border-top: 1px solid var(--hp-line-soft);
+  background: var(--hp-surface);
+}
+
+.mobileMenu.open {
+  display: flex;
+}
+
+.mobileLink {
+  padding: 12px 6px;
+  font-weight: 600;
+  border-radius: 8px;
+  color: var(--hp-charcoal);
+}
+
+.mobileLink:hover {
+  background: var(--hp-mint-50);
+}
+
+@media (max-width: 860px) {
+  .links {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+}

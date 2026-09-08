@@ -1,0 +1,150 @@
+:root {
+  /* Brand */
+  --hp-primary: #1e7a5f;
+  --hp-primary-dark: #145742;
+  --hp-primary-light: #2f9c7a;
+  --hp-mint-50: #f2faf7;
+  --hp-mint-100: #e3f5ee;
+  --hp-mint-200: #c8ecdd;
+  --hp-gold: #c9a24b;
+
+  /* Neutrals */
+  --hp-ink: #10231d;
+  --hp-charcoal: #29352f;
+  --hp-slate: #5c6b64;
+  --hp-line: #dfe8e3;
+  --hp-line-soft: #eef4f1;
+  --hp-surface: #ffffff;
+  --hp-bg: #fbfdfc;
+
+  /* Elevation */
+  --hp-shadow-sm: 0 1px 2px rgba(16, 35, 29, 0.06), 0 1px 1px rgba(16, 35, 29, 0.04);
+  --hp-shadow-md: 0 8px 24px rgba(16, 35, 29, 0.08);
+  --hp-shadow-lg: 0 20px 48px rgba(16, 35, 29, 0.14);
+
+  /* Radius */
+  --hp-radius-sm: 10px;
+  --hp-radius-md: 16px;
+  --hp-radius-lg: 24px;
+  --hp-radius-pill: 999px;
+
+  /* Spacing scale */
+  --hp-space-1: 4px;
+  --hp-space-2: 8px;
+  --hp-space-3: 12px;
+  --hp-space-4: 16px;
+  --hp-space-5: 24px;
+  --hp-space-6: 32px;
+  --hp-space-7: 48px;
+  --hp-space-8: 64px;
+
+  /* Type */
+  --hp-font: "Segoe UI", ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --hp-font-display: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+
+  --hp-max-width: 1240px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--hp-font);
+  color: var(--hp-ink);
+  background: var(--hp-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+.hp-container {
+  max-width: var(--hp-max-width);
+  margin: 0 auto;
+  padding: 0 var(--hp-space-5);
+}
+
+.hp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--hp-space-2);
+  border: none;
+  cursor: pointer;
+  border-radius: var(--hp-radius-pill);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 12px 24px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.hp-btn:active {
+  transform: scale(0.98);
+}
+
+.hp-btn-primary {
+  background: linear-gradient(135deg, var(--hp-primary-light), var(--hp-primary));
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(30, 122, 95, 0.28);
+}
+
+.hp-btn-primary:hover {
+  box-shadow: 0 12px 28px rgba(30, 122, 95, 0.36);
+}
+
+.hp-btn-ghost {
+  background: transparent;
+  color: var(--hp-primary-dark);
+  border: 1.5px solid var(--hp-line);
+}
+
+.hp-btn-ghost:hover {
+  border-color: var(--hp-primary);
+  background: var(--hp-mint-50);
+}
+
+.hp-section-title {
+  font-family: var(--hp-font-display);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--hp-ink);
+  letter-spacing: -0.01em;
+}
+
+.hp-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--hp-primary);
+}
+
+::selection {
+  background: var(--hp-mint-200);
+  color: var(--hp-ink);
+}
+
+@media (max-width: 720px) {
+  .hp-section-title {
+    font-size: 1.5rem;
+  }
+}
