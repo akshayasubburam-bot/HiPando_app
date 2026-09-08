@@ -11,9 +11,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   cursor: pointer;
   z-index: 60;
   transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.avatarImg {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .fab:hover {

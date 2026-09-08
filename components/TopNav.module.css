@@ -31,12 +31,17 @@
   width: 34px;
   height: 34px;
   border-radius: 10px;
-  background: linear-gradient(135deg, var(--hp-primary-light), var(--hp-primary-dark));
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   font-weight: 800;
   box-shadow: 0 6px 16px rgba(30, 122, 95, 0.35);
 }

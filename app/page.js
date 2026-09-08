@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import styles from "./page.module.css";
 import SearchBar from "@/components/SearchBar";
 import LocalityCard from "@/components/LocalityCard";
@@ -13,6 +14,14 @@ export default function HomePage() {
   return (
     <main>
       <section className={styles.hero}>
+        <Image
+          src="/images/logo-mascot.png"
+          alt="Hi Pando mascot"
+          width={220}
+          height={295}
+          className={styles.heroMascot}
+          priority
+        />
         <div className={`hp-container ${styles.heroInner}`}>
           <span className={styles.eyebrow}>🇦🇪 Dubai&rsquo;s most elegant property search</span>
           <h1 className={styles.heading}>

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import styles from "@/app/auth.module.css";
 
 export default function AuthForm({ mode }) {
@@ -30,7 +31,9 @@ export default function AuthForm({ mode }) {
   return (
     <div className={styles.wrap}>
       <div className={styles.card}>
-        <div className={styles.mark}>HP</div>
+        <div className={styles.mark}>
+          <Image src="/images/logo-mascot.png" alt="Hi Pando" width={44} height={44} />
+        </div>
         <div className={styles.title}>{isSignUp ? "Create your account" : "Welcome back"}</div>
         <div className={styles.subtitle}>
           {isSignUp

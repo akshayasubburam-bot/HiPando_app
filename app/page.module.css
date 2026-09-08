@@ -25,6 +25,21 @@
   gap: var(--hp-space-5);
 }
 
+.heroMascot {
+  display: none;
+  position: absolute;
+  top: var(--hp-space-6);
+  right: 6%;
+  z-index: 0;
+  filter: drop-shadow(0 20px 30px rgba(16, 35, 29, 0.15));
+}
+
+@media (min-width: 1024px) {
+  .heroMascot {
+    display: block;
+  }
+}
+
 .eyebrow {
   display: inline-flex;
   align-items: center;

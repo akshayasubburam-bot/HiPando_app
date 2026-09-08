@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
@@ -6,7 +7,9 @@ export default function Footer() {
       <div className={`hp-container ${styles.grid}`}>
         <div>
           <div className={styles.brand}>
-            <span className={styles.mark}>HP</span>
+            <span className={styles.mark}>
+              <Image src="/images/logo-mascot.png" alt="Hi Pando" width={28} height={28} />
+            </span>
             Hi Pando
           </div>
           <p className={styles.tagline}>

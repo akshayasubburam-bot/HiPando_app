@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import styles from "./TopNav.module.css";
 
@@ -20,7 +21,9 @@ export default function TopNav() {
     <header className={styles.wrap}>
       <div className={`hp-container ${styles.inner}`}>
         <Link href="/" className={styles.logo}>
-          <span className={styles.mark}>HP</span>
+          <span className={styles.mark}>
+            <Image src="/images/logo-mascot.png" alt="Hi Pando" width={34} height={34} />
+          </span>
           Hi <span className={styles.logoAccent}>Pando</span>
         </Link>
 

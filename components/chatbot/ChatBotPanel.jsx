@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import styles from "./ChatBotPanel.module.css";
 import { useChatBot } from "./ChatBotProvider";
 import ChatMessage from "./ChatMessage";
@@ -23,7 +24,9 @@ export default function ChatBotPanel() {
     <div className={styles.panel} role="dialog" aria-label="Hi Pando Assistant">
       <div className={styles.header}>
         <div className={styles.headerInfo}>
-          <div className={styles.avatar}>🐼</div>
+          <div className={styles.avatar}>
+            <Image src="/images/logo-mascot.png" alt="" width={34} height={34} />
+          </div>
           <div>
             <div className={styles.name}>Hi Pando Assistant</div>
             <div className={styles.status}>

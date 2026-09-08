@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styles from "./ChatMessage.module.css";
 import ChatQuickReplies from "./ChatQuickReplies";
 import ChatPropertyMiniCard from "./ChatPropertyMiniCard";
@@ -7,7 +8,11 @@ export default function ChatMessage({ message }) {
 
   return (
     <div className={`${styles.row} ${isBot ? styles.rowBot : styles.rowUser}`}>
-      {isBot && <div className={styles.avatar}>🐼</div>}
+      {isBot && (
+        <div className={styles.avatar}>
+          <Image src="/images/logo-mascot.png" alt="" width={28} height={28} />
+        </div>
+      )}
       <div className={styles.column}>
         <div className={`${styles.bubble} ${isBot ? styles.bubbleBot : styles.bubbleUser}`}>
           {message.text}
