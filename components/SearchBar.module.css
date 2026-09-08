@@ -121,6 +121,40 @@
   box-shadow: 0 14px 30px rgba(30, 122, 95, 0.36);
 }
 
+.micBtn {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: var(--hp-mint-100);
+  color: var(--hp-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.micBtn:hover {
+  background: var(--hp-mint-200);
+}
+
+.micActive {
+  background: var(--hp-primary);
+  color: #fff;
+  animation: micPulse 1.4s infinite;
+}
+
+@keyframes micPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(30, 122, 95, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(30, 122, 95, 0.15);
+  }
+}
+
 .suggestions {
   position: absolute;
   top: calc(100% + 8px);

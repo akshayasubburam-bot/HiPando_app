@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./SearchBar.module.css";
 import { localities } from "@/data/localities";
@@ -28,7 +28,47 @@ export default function SearchBar({
   const [type, setType] = useState(initialType);
   const [bedroom, setBedroom] = useState(initialBedroom);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [isListening, setIsListening] = useState(false);
+  const [voiceSupported, setVoiceSupported] = useState(false);
   const blurTimeout = useRef(null);
+  const recognitionRef = useRef(null);
+
+  useEffect(() => {
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) return;
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      setLocation(transcript);
+      setShowSuggestions(false);
+      runSearch({ location: transcript });
+    };
+    recognition.onerror = () => setIsListening(false);
+    recognition.onend = () => setIsListening(false);
+
+    recognitionRef.current = recognition;
+    setVoiceSupported(true);
+
+    return () => recognition.abort();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function toggleVoiceInput() {
+    if (!recognitionRef.current) return;
+    if (isListening) {
+      recognitionRef.current.stop();
+      setIsListening(false);
+      return;
+    }
+    setIsListening(true);
+    recognitionRef.current.start();
+  }
 
   const suggestions = useMemo(() => {
     if (!location.trim()) return ALL_LOCATIONS.slice(0, 6);
@@ -101,6 +141,25 @@ export default function SearchBar({
             }}
             onKeyDown={(e) => e.key === "Enter" && runSearch()}
           />
+          {voiceSupported && (
+            <button
+              type="button"
+              className={`${styles.micBtn} ${isListening ? styles.micActive : ""}`}
+              onClick={toggleVoiceInput}
+              aria-label={isListening ? "Stop voice search" : "Search by voice"}
+              title={isListening ? "Listening…" : "Search by voice"}
+            >
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <rect x="5.5" y="1" width="5" height="8" rx="2.5" fill="currentColor" />
+                <path
+                  d="M3 8a5 5 0 0 0 10 0M8 13v2"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
+          )}
           {showSuggestions && suggestions.length > 0 && (
             <div className={styles.suggestions}>
               {suggestions.map((s) => (
