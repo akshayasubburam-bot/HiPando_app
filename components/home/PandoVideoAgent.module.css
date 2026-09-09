@@ -1,11 +1,11 @@
 .wrap {
   position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   height: 100%;
   min-height: 0;
+  padding-top: 46px;
 }
 
 .liveBadge {
@@ -58,14 +58,15 @@
 }
 
 .speechBubble {
-  position: relative;
-  z-index: 2;
+  position: absolute;
+  left: 0;
+  top: 36%;
+  z-index: 3;
   background: var(--hp-surface);
   border-radius: var(--hp-radius-md);
   box-shadow: var(--hp-shadow-lg);
   padding: var(--hp-space-4);
-  max-width: 320px;
-  margin-top: -18px;
+  width: min(280px, 62%);
 }
 
 .speechHeader {
@@ -101,12 +102,13 @@
 }
 
 .video {
-  width: min(340px, 80%);
+  width: min(320px, 72%);
   aspect-ratio: 3 / 4;
-  object-fit: cover;
+  object-fit: contain;
   z-index: 1;
-  -webkit-mask-image: radial-gradient(ellipse 58% 58% at 50% 42%, #000 55%, transparent 100%);
-  mask-image: radial-gradient(ellipse 58% 58% at 50% 42%, #000 55%, transparent 100%);
+  filter: drop-shadow(0 24px 20px rgba(16, 35, 29, 0.18));
+  -webkit-mask-image: radial-gradient(ellipse 42% 46% at 50% 44%, #000 55%, transparent 92%);
+  mask-image: radial-gradient(ellipse 42% 46% at 50% 44%, #000 55%, transparent 92%);
 }
 
 @media (max-width: 1023px) {
