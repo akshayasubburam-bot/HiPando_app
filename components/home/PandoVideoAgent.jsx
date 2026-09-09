@@ -6,7 +6,7 @@ import styles from "./PandoVideoAgent.module.css";
 // Bump this whenever /public/videos/pando-speaking.mp4 is replaced —
 // browsers cache <video src> aggressively by URL, so the query string
 // is what forces them to fetch the new file instead of the old one.
-const VIDEO_SRC = "/videos/pando-speaking.mp4?v=269109";
+const VIDEO_SRC = "/videos/pando-speaking.mp4?v=1217011";
 
 const SCRIPT_LINES = [
   "Welcome to Hi Pando — I'm Pando, your AI real estate concierge for Dubai.",
