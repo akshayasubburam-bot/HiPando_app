@@ -36,7 +36,7 @@
 .toggleActive {
   background: var(--hp-primary);
   color: #fff;
-  box-shadow: 0 6px 14px rgba(30, 122, 95, 0.3);
+  box-shadow: 0 6px 14px rgba(193, 39, 45, 0.3);
 }
 
 .fields {
@@ -113,12 +113,12 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  box-shadow: 0 10px 24px rgba(30, 122, 95, 0.3);
+  box-shadow: 0 10px 24px rgba(193, 39, 45, 0.3);
   transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
 
 .searchBtn:hover {
-  box-shadow: 0 14px 30px rgba(30, 122, 95, 0.36);
+  box-shadow: 0 14px 30px rgba(193, 39, 45, 0.36);
 }
 
 .micBtn {
@@ -148,10 +148,10 @@
 
 @keyframes micPulse {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(30, 122, 95, 0.4);
+    box-shadow: 0 0 0 0 rgba(193, 39, 45, 0.4);
   }
   50% {
-    box-shadow: 0 0 0 6px rgba(30, 122, 95, 0.15);
+    box-shadow: 0 0 0 6px rgba(193, 39, 45, 0.15);
   }
 }
 

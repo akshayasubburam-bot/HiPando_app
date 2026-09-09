@@ -1,11 +1,11 @@
 :root {
   /* Brand */
-  --hp-primary: #1e7a5f;
-  --hp-primary-dark: #145742;
-  --hp-primary-light: #2f9c7a;
-  --hp-mint-50: #f2faf7;
-  --hp-mint-100: #e3f5ee;
-  --hp-mint-200: #c8ecdd;
+  --hp-primary: #c1272d;
+  --hp-primary-dark: #8f1620;
+  --hp-primary-light: #e05252;
+  --hp-mint-50: #fdf3f2;
+  --hp-mint-100: #fbe4e1;
+  --hp-mint-200: #f5c6c0;
   --hp-gold: #c9a24b;
 
   /* Neutrals */
@@ -104,11 +104,11 @@ textarea {
 .hp-btn-primary {
   background: linear-gradient(135deg, var(--hp-primary-light), var(--hp-primary));
   color: #fff;
-  box-shadow: 0 10px 24px rgba(30, 122, 95, 0.28);
+  box-shadow: 0 10px 24px rgba(193, 39, 45, 0.28);
 }
 
 .hp-btn-primary:hover {
-  box-shadow: 0 12px 28px rgba(30, 122, 95, 0.36);
+  box-shadow: 0 12px 28px rgba(193, 39, 45, 0.36);
 }
 
 .hp-btn-ghost {

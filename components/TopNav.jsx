@@ -17,6 +17,8 @@ export default function TopNav() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
+  if (pathname === "/") return null;
+
   return (
     <header className={styles.wrap}>
       <div className={`hp-container ${styles.inner}`}>

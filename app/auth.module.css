@@ -5,7 +5,7 @@
   justify-content: center;
   padding: var(--hp-space-6) var(--hp-space-4);
   background:
-    radial-gradient(50% 50% at 90% 10%, rgba(30, 122, 95, 0.1), transparent 70%),
+    radial-gradient(50% 50% at 90% 10%, rgba(193, 39, 45, 0.1), transparent 70%),
     radial-gradient(40% 40% at 10% 90%, rgba(201, 162, 75, 0.12), transparent 70%),
     var(--hp-mint-50);
 }
