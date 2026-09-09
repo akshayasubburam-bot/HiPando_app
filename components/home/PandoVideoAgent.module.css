@@ -105,7 +105,8 @@
 .video {
   width: min(380px, 66%);
   aspect-ratio: 3 / 4;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: center;
   z-index: 1;
   flex-shrink: 0;
   filter: drop-shadow(0 24px 20px rgba(16, 35, 29, 0.18));
