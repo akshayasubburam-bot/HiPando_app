@@ -3,47 +3,76 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./PandoVideoAgent.module.css";
 
-const CONCIERGE_LINES = [
-  "Delighted to help! Handpicking a few serene waterfront homes in Dubai Marina for you right now…",
-  "I can also compare rent versus buy, or check what documents you'll need as a foreign buyer.",
-  "Just tell me a community, budget or number of bedrooms — I'll shortlist the best matches instantly.",
+const SCRIPT_LINES = [
+  "Welcome to Hi Pando — I'm Pando, your AI real estate concierge for Dubai.",
+  "Right here, you can tell me what you're looking for — a beachfront apartment, a family villa, or a high-yield investment.",
+  "Just type in the search box, or tap the microphone and speak naturally in English.",
+  "I'll search live listings across Dubai's top communities and bring back the best matches for you, instantly.",
 ];
 
 export default function PandoVideoAgent() {
   const videoRef = useRef(null);
   const [muted, setMuted] = useState(false);
   const [lineIndex, setLineIndex] = useState(0);
+  const [speechSupported, setSpeechSupported] = useState(false);
+  const mutedRef = useRef(false);
+  const lineIndexRef = useRef(0);
+  const speakCurrentLineRef = useRef(() => {});
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    videoRef.current?.play().catch(() => {});
 
-    video.muted = false;
-    const playPromise = video.play();
-    if (playPromise && typeof playPromise.catch === "function") {
-      playPromise.catch(() => {
-        video.muted = true;
-        setMuted(true);
-        video.play().catch(() => {});
-      });
+    if (!("speechSynthesis" in window)) return;
+    setSpeechSupported(true);
+
+    function pickVoice() {
+      const voices = window.speechSynthesis.getVoices();
+      return (
+        voices.find((v) => v.lang === "en-US") ||
+        voices.find((v) => v.lang?.startsWith("en")) ||
+        voices[0] ||
+        null
+      );
     }
-  }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setLineIndex((i) => (i + 1) % CONCIERGE_LINES.length);
-    }, 6000);
-    return () => clearInterval(interval);
+    function speakCurrentLine() {
+      if (mutedRef.current) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(SCRIPT_LINES[lineIndexRef.current]);
+      utterance.lang = "en-US";
+      utterance.rate = 0.98;
+      const voice = pickVoice();
+      if (voice) utterance.voice = voice;
+      utterance.onend = () => {
+        lineIndexRef.current = (lineIndexRef.current + 1) % SCRIPT_LINES.length;
+        setLineIndex(lineIndexRef.current);
+        speakCurrentLine();
+      };
+      window.speechSynthesis.speak(utterance);
+    }
+
+    speakCurrentLineRef.current = speakCurrentLine;
+
+    if (window.speechSynthesis.getVoices().length === 0) {
+      window.speechSynthesis.onvoiceschanged = speakCurrentLine;
+    }
+    const timeout = setTimeout(speakCurrentLine, 200);
+
+    return () => {
+      clearTimeout(timeout);
+      window.speechSynthesis.cancel();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function toggleMute() {
-    const video = videoRef.current;
-    if (!video) return;
     const next = !muted;
-    video.muted = next;
     setMuted(next);
-    if (!next) {
-      video.play().catch(() => {});
+    mutedRef.current = next;
+    if (next) {
+      window.speechSynthesis?.cancel();
+    } else {
+      speakCurrentLineRef.current();
     }
   }
 
@@ -53,42 +82,45 @@ export default function PandoVideoAgent() {
         <span className={styles.liveDot} /> LIVE 3D AGENT
       </span>
 
-      <button
-        type="button"
-        className={styles.speakerBtn}
-        onClick={toggleMute}
-        aria-label={muted ? "Unmute Pando" : "Mute Pando"}
-        title={muted ? "Unmute Pando" : "Mute Pando"}
-      >
-        {muted ? (
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M2 6h2.5L8 3v10L4.5 10H2V6Z" fill="currentColor" />
-            <path d="M10.5 5.5l4 5M14.5 5.5l-4 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-          </svg>
-        ) : (
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M2 6h2.5L8 3v10L4.5 10H2V6Z" fill="currentColor" />
-            <path d="M10.8 5.3a3.6 3.6 0 0 1 0 5.4M12.7 3.6a6.3 6.3 0 0 1 0 8.8" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-          </svg>
-        )}
-      </button>
-
-      <div className={styles.speechBubble}>
-        <div className={styles.speechHeader}>
-          <span className={styles.sparkle}>✨</span> PANDO CONCIERGE
-          <span className={styles.liveTag}>Live</span>
-        </div>
-        <p className={styles.speechText}>&ldquo;{CONCIERGE_LINES[lineIndex]}&rdquo;</p>
-      </div>
+      {speechSupported && (
+        <button
+          type="button"
+          className={styles.speakerBtn}
+          onClick={toggleMute}
+          aria-label={muted ? "Unmute Pando" : "Mute Pando"}
+          title={muted ? "Unmute Pando" : "Mute Pando"}
+        >
+          {muted ? (
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M2 6h2.5L8 3v10L4.5 10H2V6Z" fill="currentColor" />
+              <path d="M10.5 5.5l4 5M14.5 5.5l-4 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+            </svg>
+          ) : (
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M2 6h2.5L8 3v10L4.5 10H2V6Z" fill="currentColor" />
+              <path d="M10.8 5.3a3.6 3.6 0 0 1 0 5.4M12.7 3.6a6.3 6.3 0 0 1 0 8.8" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+            </svg>
+          )}
+        </button>
+      )}
 
       <video
         ref={videoRef}
         className={styles.video}
         src="/videos/pando-speaking.mp4"
         autoPlay
+        muted
         loop
         playsInline
       />
+
+      <div className={styles.speechBubble}>
+        <div className={styles.speechHeader}>
+          <span className={styles.sparkle}>✨</span> PANDO CONCIERGE
+          <span className={styles.liveTag}>Live</span>
+        </div>
+        <p className={styles.speechText}>&ldquo;{SCRIPT_LINES[lineIndex]}&rdquo;</p>
+      </div>
     </div>
   );
 }
