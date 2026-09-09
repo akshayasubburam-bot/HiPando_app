@@ -3,6 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./PandoVideoAgent.module.css";
 
+// Bump this whenever /public/videos/pando-speaking.mp4 is replaced —
+// browsers cache <video src> aggressively by URL, so the query string
+// is what forces them to fetch the new file instead of the old one.
+const VIDEO_SRC = "/videos/pando-speaking.mp4?v=269109";
+
 const SCRIPT_LINES = [
   "Welcome to Hi Pando — I'm Pando, your AI real estate concierge for Dubai.",
   "Right here, you can tell me what you're looking for — a beachfront apartment, a family villa, or a high-yield investment.",
@@ -115,7 +120,7 @@ export default function PandoVideoAgent() {
       <video
         ref={videoRef}
         className={styles.video}
-        src="/videos/pando-speaking.mp4"
+        src={VIDEO_SRC}
         autoPlay
         muted
         loop
