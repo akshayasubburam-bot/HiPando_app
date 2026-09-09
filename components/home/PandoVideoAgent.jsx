@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import styles from "./PandoVideoAgent.module.css";
 
 const SCRIPT_LINES = [
@@ -12,6 +11,7 @@ const SCRIPT_LINES = [
 ];
 
 export default function PandoVideoAgent() {
+  const videoRef = useRef(null);
   const [muted, setMuted] = useState(false);
   const [lineIndex, setLineIndex] = useState(0);
   const [speechSupported, setSpeechSupported] = useState(false);
@@ -20,6 +20,8 @@ export default function PandoVideoAgent() {
   const speakCurrentLineRef = useRef(() => {});
 
   useEffect(() => {
+    videoRef.current?.play().catch(() => {});
+
     if (!("speechSynthesis" in window)) return;
     setSpeechSupported(true);
 
@@ -110,13 +112,14 @@ export default function PandoVideoAgent() {
         <p className={styles.speechText}>&ldquo;{SCRIPT_LINES[lineIndex]}&rdquo;</p>
       </div>
 
-      <Image
-        src="/images/pando-agent.png"
-        alt="Pando, the Hi Pando AI advisor"
-        width={296}
-        height={332}
-        className={styles.image}
-        priority
+      <video
+        ref={videoRef}
+        className={styles.video}
+        src="/videos/pando-speaking.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
       />
     </div>
   );
