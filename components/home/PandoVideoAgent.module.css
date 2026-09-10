@@ -103,16 +103,15 @@
 }
 
 .video {
-  width: auto;
-  max-width: min(440px, 70%);
-  max-height: calc(100dvh - 180px);
-  object-fit: contain;
-  object-position: center bottom;
+  width: min(380px, 66%);
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: center;
   z-index: 1;
   flex-shrink: 0;
-  filter: drop-shadow(0 16px 20px rgba(16, 35, 29, 0.15));
-  -webkit-mask-image: radial-gradient(ellipse 58% 62% at 50% 46%, #000 65%, transparent 97%);
-  mask-image: radial-gradient(ellipse 58% 62% at 50% 46%, #000 65%, transparent 97%);
+  filter: drop-shadow(0 24px 20px rgba(16, 35, 29, 0.18));
+  -webkit-mask-image: radial-gradient(ellipse 62% 66% at 50% 46%, #000 68%, transparent 98%);
+  mask-image: radial-gradient(ellipse 62% 66% at 50% 46%, #000 68%, transparent 98%);
 }
 
 @media (max-width: 1023px) {
@@ -122,12 +121,9 @@
     padding-top: 44px;
   }
   .speechBubble {
-    width: min(280px, 85%);
+    width: min(240px, 70%);
   }
   .video {
-    width: auto;
-    max-width: min(340px, 85vw);
-    max-height: 55vh;
+    width: min(300px, 78vw);
   }
 }
-
