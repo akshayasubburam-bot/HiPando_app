@@ -64,12 +64,14 @@ export default function PropertyDetailsPage({ params }) {
 
             <div className={styles.priceCard}>
               <span className={styles.priceEyebrow}>Verified Listing Valuation</span>
-              <div className={styles.priceValue}>{formatPrice(property)}</div>
-              <div className={styles.priceActions}>
-                <EnquireButton className={`hp-btn ${styles.whatsappBtn}`} />
-                <button type="button" className={`hp-btn hp-btn-ghost ${styles.vipBtn}`}>
-                  VIP Viewing
-                </button>
+              <div className={styles.priceRow}>
+                <div className={styles.priceValue}>{formatPrice(property)}</div>
+                <div className={styles.priceActions}>
+                  <EnquireButton className={`hp-btn ${styles.whatsappBtn}`} />
+                  <button type="button" className={`hp-btn hp-btn-ghost ${styles.vipBtn}`}>
+                    VIP Viewing
+                  </button>
+                </div>
               </div>
             </div>
 

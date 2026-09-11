@@ -169,12 +169,21 @@
   color: var(--hp-slate);
 }
 
+.priceRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--hp-space-3);
+  width: 100%;
+  flex-wrap: wrap;
+}
+
 .priceValue {
   font-size: 1.4rem;
   font-weight: 800;
   color: var(--hp-ink);
   letter-spacing: -0.01em;
-  margin-bottom: 4px;
+  white-space: nowrap;
 }
 
 .priceActions {
@@ -255,5 +264,9 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+  }
+  .priceRow {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
