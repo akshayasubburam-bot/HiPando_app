@@ -376,17 +376,6 @@
   color: var(--hp-slate);
 }
 
-.similarBlock {
-  margin-top: var(--hp-space-3);
-}
-
-.similarGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--hp-space-4);
-  margin-top: var(--hp-space-3);
-}
-
 .right {
   min-width: 0;
   height: 100%;
@@ -421,9 +410,6 @@
   .agentCard {
     flex-direction: column;
     align-items: flex-start;
-  }
-  .similarGrid {
-    grid-template-columns: 1fr;
   }
   .topbarInner {
     height: auto;

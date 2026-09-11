@@ -2,7 +2,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./details.module.css";
 import PropertyGallery from "@/components/PropertyGallery";
-import PropertyCard from "@/components/PropertyCard";
 import EnquireButton from "@/components/EnquireButton";
 import PropertyAiPanel from "@/components/property/PropertyAiPanel";
 import { properties } from "@/data/properties";
@@ -21,14 +20,6 @@ export function generateMetadata({ params }) {
 export default function PropertyDetailsPage({ params }) {
   const property = properties.find((p) => p.id === params.id);
   if (!property) notFound();
-
-  const similar = properties
-    .filter(
-      (p) =>
-        p.id !== property.id &&
-        (p.community === property.community || p.type === property.type)
-    )
-    .slice(0, 4);
 
   return (
     <main className={styles.wrap}>
@@ -142,17 +133,6 @@ export default function PropertyDetailsPage({ params }) {
               </div>
               <EnquireButton className={`hp-btn ${styles.whatsappBtn}`} />
             </div>
-
-            {similar.length > 0 && (
-              <div className={styles.similarBlock}>
-                <div className={styles.blockTitle}>Similar Properties</div>
-                <div className={styles.similarGrid}>
-                  {similar.map((p) => (
-                    <PropertyCard key={p.id} property={p} />
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
 
           <aside className={styles.right}>
