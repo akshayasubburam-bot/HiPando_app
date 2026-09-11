@@ -100,7 +100,11 @@ export default function PropertyAiPanel({ property }) {
     const next = !muted;
     setMuted(next);
     mutedRef.current = next;
-    if (next) window.speechSynthesis?.cancel();
+    if (next) {
+      window.speechSynthesis?.cancel();
+    } else {
+      speak(explainProperty(property));
+    }
   }
 
   function sendMessage(text) {

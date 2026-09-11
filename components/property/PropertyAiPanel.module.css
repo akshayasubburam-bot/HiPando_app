@@ -38,7 +38,7 @@
 }
 
 .introBubble {
-  flex: 0 1 42%;
+  flex: 0 1 34%;
   min-width: 0;
   background: #f3e3c1;
   border-radius: var(--hp-radius-md);
@@ -85,7 +85,7 @@
 
 .avatar {
   width: 100%;
-  max-width: 210px;
+  max-width: 250px;
   height: auto;
   filter: drop-shadow(0 14px 16px rgba(16, 35, 29, 0.18));
   animation: pandoIdle 4.5s ease-in-out infinite;
