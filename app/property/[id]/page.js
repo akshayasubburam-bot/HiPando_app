@@ -57,47 +57,46 @@ export default function PropertyDetailsPage({ params }) {
 
         <div className={styles.layout}>
           <div className={styles.left}>
-            <div className={styles.galleryWrap}>
+            <div className={styles.galleryCol}>
               <span className={styles.galleryBadge}>✔ Verified Imagery</span>
               <PropertyGallery images={property.images} title={property.title} />
             </div>
 
-            <div className={styles.priceCard}>
-              <div>
+            <div className={styles.detailsCol}>
+              <div className={styles.priceCard}>
                 <span className={styles.priceEyebrow}>Verified Listing Valuation</span>
                 <div className={styles.priceValue}>{formatPrice(property)}</div>
+                <div className={styles.priceActions}>
+                  <EnquireButton className={`hp-btn ${styles.whatsappBtn}`} />
+                  <button type="button" className={`hp-btn hp-btn-ghost ${styles.vipBtn}`}>
+                    VIP Viewing
+                  </button>
+                </div>
               </div>
-              <div className={styles.priceActions}>
-                <EnquireButton className={`hp-btn ${styles.whatsappBtn}`} />
-                <button type="button" className={`hp-btn hp-btn-ghost ${styles.vipBtn}`}>
-                  VIP Viewing
-                </button>
+
+              <div className={styles.metricsRow}>
+                <div className={styles.metricCard}>
+                  <span className={styles.metricIcon}>🛏</span>
+                  <span className={styles.metricValue}>{bedroomLabel(property.bedrooms)}</span>
+                  <span className={styles.metricLabel}>Bedrooms</span>
+                </div>
+                <div className={styles.metricCard}>
+                  <span className={styles.metricIcon}>📐</span>
+                  <span className={styles.metricValue}>{property.areaSqft.toLocaleString()}</span>
+                  <span className={styles.metricLabel}>Built-Up Sq. Ft.</span>
+                </div>
+                <div className={styles.metricCard}>
+                  <span className={styles.metricIcon}>🛁</span>
+                  <span className={styles.metricValue}>{property.bathrooms}</span>
+                  <span className={styles.metricLabel}>Bathrooms</span>
+                </div>
+                <div className={styles.metricCard}>
+                  <span className={styles.metricIcon}>🛋️</span>
+                  <span className={styles.metricValue}>{property.furnishing}</span>
+                  <span className={styles.metricLabel}>Furnishing</span>
+                </div>
               </div>
             </div>
-
-            <div className={styles.metricsRow}>
-              <div className={styles.metricCard}>
-                <span className={styles.metricIcon}>🛏</span>
-                <span className={styles.metricValue}>{bedroomLabel(property.bedrooms)}</span>
-                <span className={styles.metricLabel}>Bedrooms</span>
-              </div>
-              <div className={styles.metricCard}>
-                <span className={styles.metricIcon}>📐</span>
-                <span className={styles.metricValue}>{property.areaSqft.toLocaleString()}</span>
-                <span className={styles.metricLabel}>Built-Up Sq. Ft.</span>
-              </div>
-              <div className={styles.metricCard}>
-                <span className={styles.metricIcon}>🛁</span>
-                <span className={styles.metricValue}>{property.bathrooms}</span>
-                <span className={styles.metricLabel}>Bathrooms</span>
-              </div>
-              <div className={styles.metricCard}>
-                <span className={styles.metricIcon}>🛋️</span>
-                <span className={styles.metricValue}>{property.furnishing}</span>
-                <span className={styles.metricLabel}>Furnishing</span>
-              </div>
-            </div>
-
           </div>
 
           <aside className={styles.right}>

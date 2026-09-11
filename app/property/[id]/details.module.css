@@ -26,7 +26,7 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .bottomBar {
@@ -145,20 +145,31 @@
   display: grid;
   grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
   gap: var(--hp-space-6);
-  align-items: start;
+  align-items: stretch;
   margin-top: var(--hp-space-3);
   padding-bottom: var(--hp-space-4);
+  flex: 1;
+  min-height: 0;
 }
 
 .left {
   display: flex;
-  flex-direction: column;
-  gap: var(--hp-space-3);
+  gap: var(--hp-space-4);
   min-width: 0;
 }
 
-.galleryWrap {
+.galleryCol {
   position: relative;
+  flex: 1 1 46%;
+  min-width: 0;
+}
+
+.detailsCol {
+  flex: 1 1 54%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--hp-space-3);
 }
 
 .galleryBadge {
@@ -182,10 +193,9 @@
   box-shadow: var(--hp-shadow-sm);
   padding: var(--hp-space-4);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--hp-space-4);
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
 }
 
 .priceEyebrow {
@@ -226,7 +236,7 @@
 
 .metricsRow {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--hp-space-3);
 }
 
@@ -273,8 +283,8 @@
   .layout {
     grid-template-columns: 1fr;
   }
-  .metricsRow {
-    grid-template-columns: repeat(2, 1fr);
+  .left {
+    flex-direction: column;
   }
 }
 

@@ -11,48 +11,31 @@ export default function PropertyGallery({ images, title }) {
   }
 
   return (
-    <div>
-      <div className={styles.wrap}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={images[index]} alt={`${title} photo ${index + 1}`} className={styles.mainImage} />
-        {images.length > 1 && (
-          <>
-            <button
-              type="button"
-              className={`${styles.navBtn} ${styles.navPrev}`}
-              onClick={() => go(-1)}
-              aria-label="Previous photo"
-            >
-              ‹
-            </button>
-            <button
-              type="button"
-              className={`${styles.navBtn} ${styles.navNext}`}
-              onClick={() => go(1)}
-              aria-label="Next photo"
-            >
-              ›
-            </button>
-            <span className={styles.counter}>
-              {index + 1} / {images.length}
-            </span>
-          </>
-        )}
-      </div>
-
+    <div className={styles.wrap}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={images[index]} alt={`${title} photo ${index + 1}`} className={styles.mainImage} />
       {images.length > 1 && (
-        <div className={styles.thumbs}>
-          {images.map((img, i) => (
-            <div
-              key={img + i}
-              className={`${styles.thumb} ${i === index ? styles.thumbActive : ""}`}
-              onClick={() => setIndex(i)}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={img} alt={`${title} thumbnail ${i + 1}`} />
-            </div>
-          ))}
-        </div>
+        <>
+          <button
+            type="button"
+            className={`${styles.navBtn} ${styles.navPrev}`}
+            onClick={() => go(-1)}
+            aria-label="Previous photo"
+          >
+            ‹
+          </button>
+          <button
+            type="button"
+            className={`${styles.navBtn} ${styles.navNext}`}
+            onClick={() => go(1)}
+            aria-label="Next photo"
+          >
+            ›
+          </button>
+          <span className={styles.counter}>
+            {index + 1} / {images.length}
+          </span>
+        </>
       )}
     </div>
   );
