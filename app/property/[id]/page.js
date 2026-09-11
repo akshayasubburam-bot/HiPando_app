@@ -2,10 +2,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import styles from "./details.module.css";
 import PropertyGallery from "@/components/PropertyGallery";
-import AmenityBadge from "@/components/AmenityBadge";
 import PropertyCard from "@/components/PropertyCard";
 import EnquireButton from "@/components/EnquireButton";
 import Footer from "@/components/Footer";
+import PropertyAiPanel from "@/components/property/PropertyAiPanel";
 import { properties } from "@/data/properties";
 import { bedroomLabel, formatPrice } from "@/lib/format";
 
@@ -33,107 +33,133 @@ export default function PropertyDetailsPage({ params }) {
 
   return (
     <main className={styles.wrap}>
+      <header className={styles.topbar}>
+        <div className={`hp-container ${styles.topbarInner}`}>
+          <Link href="/search" className={styles.backLink}>
+            ← Back to Properties
+          </Link>
+          <div className={styles.breadcrumb}>
+            <Link href="/search">Properties</Link>
+            <span>/</span>
+            <span>{property.community}</span>
+            <span>/</span>
+            <span className={styles.breadcrumbCurrent}>{property.title}</span>
+          </div>
+          <div className={styles.topRight}>
+            <span className={styles.statusPill}>
+              <span className={styles.statusDot} /> DLD Mesh Online
+            </span>
+            <span className={styles.statusPill}>
+              <span className={styles.statusDotRed} /> Pando Active
+            </span>
+          </div>
+        </div>
+      </header>
+
       <div className="hp-container">
-        <div className={styles.breadcrumb}>
-          <Link href="/">Home</Link> / <Link href="/search">Search</Link> / {property.title}
+        <div className={styles.titleBlock}>
+          <span className={styles.verifiedTag}>✔ Verified Architectural Asset</span>
+          <h1 className={styles.title}>{property.title}</h1>
+          <div className={styles.subLocation}>
+            📍 {property.community}, {property.city} · {property.type}
+          </div>
         </div>
 
-        <PropertyGallery images={property.images} title={property.title} />
-
         <div className={styles.layout}>
-          <div>
-            <div className={styles.header}>
+          <div className={styles.left}>
+            <div className={styles.galleryWrap}>
+              <span className={styles.galleryBadge}>✔ Verified Imagery</span>
+              <PropertyGallery images={property.images} title={property.title} />
+            </div>
+
+            <div className={styles.priceCard}>
               <div>
+                <span className={styles.priceEyebrow}>Verified Listing Valuation</span>
+                <div className={styles.priceValue}>{formatPrice(property)}</div>
+              </div>
+              <div className={styles.priceActions}>
+                <EnquireButton className={`hp-btn ${styles.whatsappBtn}`} />
+                <button type="button" className={`hp-btn hp-btn-ghost ${styles.vipBtn}`}>
+                  VIP Viewing
+                </button>
+              </div>
+            </div>
+
+            <div className={styles.metricsRow}>
+              <div className={styles.metricCard}>
+                <span className={styles.metricIcon}>🛏</span>
+                <span className={styles.metricValue}>{bedroomLabel(property.bedrooms)}</span>
+                <span className={styles.metricLabel}>Bedrooms</span>
+              </div>
+              <div className={styles.metricCard}>
+                <span className={styles.metricIcon}>📐</span>
+                <span className={styles.metricValue}>{property.areaSqft.toLocaleString()}</span>
+                <span className={styles.metricLabel}>Built-Up Sq. Ft.</span>
+              </div>
+              <div className={styles.metricCard}>
+                <span className={styles.metricIcon}>🛁</span>
+                <span className={styles.metricValue}>{property.bathrooms}</span>
+                <span className={styles.metricLabel}>Bathrooms</span>
+              </div>
+              <div className={styles.metricCard}>
+                <span className={styles.metricIcon}>🛋️</span>
+                <span className={styles.metricValue}>{property.furnishing}</span>
+                <span className={styles.metricLabel}>Furnishing</span>
+              </div>
+            </div>
+
+            <div className={styles.essenceCard}>
+              <div className={styles.essenceHeader}>
+                <div className={styles.blockTitle}>Property Essence</div>
                 <span
-                  className={`${styles.badge} ${
-                    property.purpose === "sale" ? styles.badgeSale : styles.badgeRent
+                  className={`${styles.purposeBadge} ${
+                    property.purpose === "sale" ? styles.purposeSale : styles.purposeRent
                   }`}
                 >
                   {property.purpose === "sale" ? "For Sale" : "For Rent"}
                 </span>
-                <h1 className={styles.title}>{property.title}</h1>
-                <div className={styles.location}>
-                  📍 {property.community}, {property.city}
-                </div>
               </div>
-              <div className={styles.price}>{formatPrice(property)}</div>
-            </div>
-
-            <div className={styles.factsRow}>
-              <div className={styles.fact}>
-                <span className={styles.factIcon}>🛏</span>
-                <span className={styles.factValue}>{bedroomLabel(property.bedrooms)}</span>
-                <span className={styles.factLabel}>Bedrooms</span>
-              </div>
-              <div className={styles.fact}>
-                <span className={styles.factIcon}>🛁</span>
-                <span className={styles.factValue}>{property.bathrooms}</span>
-                <span className={styles.factLabel}>Bathrooms</span>
-              </div>
-              <div className={styles.fact}>
-                <span className={styles.factIcon}>📐</span>
-                <span className={styles.factValue}>{property.areaSqft.toLocaleString()}</span>
-                <span className={styles.factLabel}>Sq. Ft.</span>
-              </div>
-              <div className={styles.fact}>
-                <span className={styles.factIcon}>🏢</span>
-                <span className={styles.factValue}>{property.type}</span>
-                <span className={styles.factLabel}>Property Type</span>
-              </div>
-              <div className={styles.fact}>
-                <span className={styles.factIcon}>🛋️</span>
-                <span className={styles.factValue}>{property.furnishing}</span>
-                <span className={styles.factLabel}>Furnishing</span>
-              </div>
-            </div>
-
-            <div className={styles.block}>
-              <div className={styles.blockTitle}>Description</div>
               <p className={styles.description}>{property.description}</p>
-            </div>
-
-            <div className={styles.block}>
-              <div className={styles.blockTitle}>Amenities</div>
-              <div className={styles.amenityGrid}>
+              <div className={styles.tagRow}>
                 {property.amenities.map((a) => (
-                  <AmenityBadge key={a} label={a} />
+                  <span key={a} className={styles.tag}>
+                    {a}
+                  </span>
                 ))}
               </div>
             </div>
 
-            <div className={styles.block}>
-              <div className={styles.blockTitle}>Location</div>
-              <div className={styles.mapPlaceholder}>
-                Map preview — {property.community}, {property.city}
+            <div className={styles.agentCard}>
+              <div className={styles.agentInfo}>
+                <div className={styles.agentAvatar}>HP</div>
+                <div>
+                  <div className={styles.agentName}>
+                    Hi Pando Team <span className={styles.agentVerified}>✔</span>
+                  </div>
+                  <div className={styles.agentRole}>
+                    Verified Listing Partner · {property.community} Desk
+                  </div>
+                </div>
               </div>
+              <EnquireButton className={`hp-btn ${styles.whatsappBtn}`} />
             </div>
+
+            {similar.length > 0 && (
+              <div className={styles.similarBlock}>
+                <div className={styles.blockTitle}>Similar Properties</div>
+                <div className={styles.similarGrid}>
+                  {similar.map((p) => (
+                    <PropertyCard key={p.id} property={p} />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
-          <aside className={styles.sidebar}>
-            <div className={styles.agentRow}>
-              <div className={styles.agentAvatar}>HP</div>
-              <div>
-                <div className={styles.agentName}>Hi Pando Team</div>
-                <div className={styles.agentRole}>Verified Listing Partner</div>
-              </div>
-            </div>
-            <EnquireButton className={`hp-btn hp-btn-primary ${styles.sidebarBtn}`} />
-            <button type="button" className={`hp-btn hp-btn-ghost ${styles.sidebarBtn}`}>
-              📞 Request a Call Back
-            </button>
+          <aside className={styles.right}>
+            <PropertyAiPanel property={property} />
           </aside>
         </div>
-
-        {similar.length > 0 && (
-          <div className={styles.block} style={{ marginTop: "var(--hp-space-8)" }}>
-            <div className={styles.blockTitle}>Similar Properties</div>
-            <div className={styles.similarGrid}>
-              {similar.map((p) => (
-                <PropertyCard key={p.id} property={p} />
-              ))}
-            </div>
-          </div>
-        )}
       </div>
 
       <Footer />
