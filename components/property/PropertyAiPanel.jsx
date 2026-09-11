@@ -26,7 +26,10 @@ export default function PropertyAiPanel({ property }) {
   const [input, setInput] = useState("");
   const [isListening, setIsListening] = useState(false);
   const [voiceSupported, setVoiceSupported] = useState(false);
+  const [muted, setMuted] = useState(false);
+  const [speechSupported, setSpeechSupported] = useState(false);
   const recognitionRef = useRef(null);
+  const mutedRef = useRef(false);
   const logRef = useRef(null);
 
   useEffect(() => {
@@ -52,10 +55,63 @@ export default function PropertyAiPanel({ property }) {
   }, []);
 
   useEffect(() => {
+    if (!("speechSynthesis" in window)) return;
+    setSpeechSupported(true);
+
+    function pickVoice() {
+      const voices = window.speechSynthesis.getVoices();
+      return (
+        voices.find((v) => v.lang === "en-US") ||
+        voices.find((v) => v.lang?.startsWith("en")) ||
+        voices[0] ||
+        null
+      );
+    }
+
+    function speakIntro() {
+      if (mutedRef.current) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(explainProperty(property));
+      utterance.lang = "en-US";
+      utterance.rate = 0.98;
+      const voice = pickVoice();
+      if (voice) utterance.voice = voice;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    if (window.speechSynthesis.getVoices().length === 0) {
+      window.speechSynthesis.onvoiceschanged = speakIntro;
+    }
+    const timeout = setTimeout(speakIntro, 300);
+
+    return () => {
+      clearTimeout(timeout);
+      window.speechSynthesis.cancel();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     if (logRef.current) {
       logRef.current.scrollTop = logRef.current.scrollHeight;
     }
   }, [messages]);
+
+  function speak(text) {
+    if (mutedRef.current || !("speechSynthesis" in window)) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
+    utterance.rate = 0.98;
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function toggleSpeaker() {
+    const next = !muted;
+    setMuted(next);
+    mutedRef.current = next;
+    if (next) window.speechSynthesis?.cancel();
+  }
 
   function sendMessage(text) {
     const trimmed = text.trim();
@@ -66,6 +122,7 @@ export default function PropertyAiPanel({ property }) {
       { id: nextId(), sender: "user", text: trimmed },
       { id: nextId(), sender: "pando", text: answer },
     ]);
+    speak(answer);
   }
 
   function handleSubmit(e) {
@@ -95,6 +152,27 @@ export default function PropertyAiPanel({ property }) {
           <span className={styles.liveDot} /> LIVE AI AGENT
         </span>
         <span className={styles.brandTag}>Pando Concierge</span>
+        {speechSupported && (
+          <button
+            type="button"
+            className={styles.speakerBtn}
+            onClick={toggleSpeaker}
+            aria-label={muted ? "Unmute Pando" : "Mute Pando"}
+            title={muted ? "Unmute Pando" : "Mute Pando"}
+          >
+            {muted ? (
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M2 6h2.5L8 3v10L4.5 10H2V6Z" fill="currentColor" />
+                <path d="M10.5 5.5l4 5M14.5 5.5l-4 5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+              </svg>
+            ) : (
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M2 6h2.5L8 3v10L4.5 10H2V6Z" fill="currentColor" />
+                <path d="M10.8 5.3a3.6 3.6 0 0 1 0 5.4M12.7 3.6a6.3 6.3 0 0 1 0 8.8" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+              </svg>
+            )}
+          </button>
+        )}
       </div>
 
       <div className={styles.introRow}>

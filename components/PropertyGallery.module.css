@@ -7,7 +7,7 @@
 
 .mainImage {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: clamp(200px, 34vh, 320px);
   object-fit: cover;
   display: block;
 }

@@ -26,7 +26,7 @@
   min-height: 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .bottomBar {
@@ -145,23 +145,16 @@
   display: grid;
   grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
   gap: var(--hp-space-6);
-  align-items: stretch;
+  align-items: start;
   margin-top: var(--hp-space-3);
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
   padding-bottom: var(--hp-space-4);
 }
 
 .left {
   display: flex;
   flex-direction: column;
-  gap: var(--hp-space-4);
+  gap: var(--hp-space-3);
   min-width: 0;
-  min-height: 0;
-  height: 100%;
-  overflow-y: auto;
-  padding-right: 4px;
 }
 
 .galleryWrap {
@@ -187,7 +180,7 @@
   border: 1px solid var(--hp-line-soft);
   border-radius: var(--hp-radius-lg);
   box-shadow: var(--hp-shadow-sm);
-  padding: var(--hp-space-5);
+  padding: var(--hp-space-4);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -241,7 +234,7 @@
   background: var(--hp-surface);
   border: 1px solid var(--hp-line-soft);
   border-radius: var(--hp-radius-md);
-  padding: var(--hp-space-4);
+  padding: var(--hp-space-3);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -270,7 +263,7 @@
   background: var(--hp-surface);
   border: 1px solid var(--hp-line-soft);
   border-radius: var(--hp-radius-lg);
-  padding: var(--hp-space-5);
+  padding: var(--hp-space-4);
 }
 
 .essenceHeader {
@@ -306,8 +299,12 @@
 
 .description {
   color: var(--hp-charcoal);
-  line-height: 1.7;
-  font-size: 0.92rem;
+  line-height: 1.6;
+  font-size: 0.88rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 
 .tagRow {
@@ -378,27 +375,17 @@
 
 .right {
   min-width: 0;
-  height: 100%;
-  min-height: 0;
 }
 
 @media (max-width: 980px) {
   .wrap {
     height: auto;
-    overflow: visible;
   }
   .body {
     overflow: visible;
   }
   .layout {
     grid-template-columns: 1fr;
-    overflow: visible;
-    height: auto;
-  }
-  .left,
-  .right {
-    height: auto;
-    overflow: visible;
   }
   .metricsRow {
     grid-template-columns: repeat(2, 1fr);
