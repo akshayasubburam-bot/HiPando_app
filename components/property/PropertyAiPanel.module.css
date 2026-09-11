@@ -10,7 +10,8 @@
 
 .hero {
   position: relative;
-  background: linear-gradient(160deg, #1a2b26, #0f1a17);
+  background: var(--hp-bg);
+  border-bottom: 1px solid var(--hp-line-soft);
   padding: var(--hp-space-4);
   padding-bottom: 44px;
 }
@@ -22,7 +23,7 @@
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.04em;
-  color: #eafff1;
+  color: #1f9d55;
 }
 
 .liveDot {
@@ -74,10 +75,6 @@
   font-size: 0.85rem;
   line-height: 1.5;
   color: #3a2f1c;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  overflow: hidden;
 }
 
 .avatarWrap {
@@ -89,7 +86,7 @@
 .avatar {
   width: 130px;
   height: auto;
-  filter: drop-shadow(0 14px 16px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(0 14px 16px rgba(16, 35, 29, 0.18));
   animation: pandoIdle 4.5s ease-in-out infinite;
 }
 
@@ -115,19 +112,20 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: #fff;
+  background: var(--hp-surface);
+  border: 1px solid var(--hp-line-soft);
+  box-shadow: var(--hp-shadow-sm);
+  color: var(--hp-charcoal);
   font-size: 0.7rem;
   font-weight: 700;
   padding: 6px 12px;
   border-radius: var(--hp-radius-pill);
   cursor: pointer;
-  backdrop-filter: blur(4px);
 }
 
 .voicePill:hover {
-  background: rgba(0, 0, 0, 0.6);
+  border-color: var(--hp-primary);
+  color: var(--hp-primary);
 }
 
 .chatSection {

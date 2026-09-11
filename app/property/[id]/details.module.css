@@ -259,120 +259,6 @@
   letter-spacing: 0.03em;
 }
 
-.essenceCard {
-  background: var(--hp-surface);
-  border: 1px solid var(--hp-line-soft);
-  border-radius: var(--hp-radius-lg);
-  padding: var(--hp-space-4);
-}
-
-.essenceHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: var(--hp-space-3);
-}
-
-.blockTitle {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--hp-ink);
-}
-
-.purposeBadge {
-  font-size: 0.68rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  padding: 4px 10px;
-  border-radius: var(--hp-radius-pill);
-  color: #fff;
-}
-
-.purposeSale {
-  background: var(--hp-primary);
-}
-
-.purposeRent {
-  background: var(--hp-gold);
-}
-
-.description {
-  color: var(--hp-charcoal);
-  line-height: 1.6;
-  font-size: 0.88rem;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
-}
-
-.tagRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: var(--hp-space-3);
-}
-
-.tag {
-  border: 1px solid var(--hp-line);
-  background: var(--hp-bg);
-  border-radius: var(--hp-radius-pill);
-  padding: 6px 14px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--hp-charcoal);
-}
-
-.agentCard {
-  background: var(--hp-surface);
-  border: 1px solid var(--hp-line-soft);
-  border-radius: var(--hp-radius-lg);
-  padding: var(--hp-space-4) var(--hp-space-5);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--hp-space-4);
-  flex-wrap: wrap;
-}
-
-.agentInfo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.agentAvatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--hp-primary-light), var(--hp-primary-dark));
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
-.agentName {
-  font-weight: 700;
-  font-size: 0.95rem;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.agentVerified {
-  color: #1f9d55;
-  font-size: 0.8rem;
-}
-
-.agentRole {
-  font-size: 0.8rem;
-  color: var(--hp-slate);
-}
-
 .right {
   min-width: 0;
 }
@@ -393,8 +279,7 @@
 }
 
 @media (max-width: 560px) {
-  .priceCard,
-  .agentCard {
+  .priceCard {
     flex-direction: column;
     align-items: flex-start;
   }

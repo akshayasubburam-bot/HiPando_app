@@ -98,41 +98,6 @@ export default function PropertyDetailsPage({ params }) {
               </div>
             </div>
 
-            <div className={styles.essenceCard}>
-              <div className={styles.essenceHeader}>
-                <div className={styles.blockTitle}>Property Essence</div>
-                <span
-                  className={`${styles.purposeBadge} ${
-                    property.purpose === "sale" ? styles.purposeSale : styles.purposeRent
-                  }`}
-                >
-                  {property.purpose === "sale" ? "For Sale" : "For Rent"}
-                </span>
-              </div>
-              <p className={styles.description}>{property.description}</p>
-              <div className={styles.tagRow}>
-                {property.amenities.map((a) => (
-                  <span key={a} className={styles.tag}>
-                    {a}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className={styles.agentCard}>
-              <div className={styles.agentInfo}>
-                <div className={styles.agentAvatar}>HP</div>
-                <div>
-                  <div className={styles.agentName}>
-                    Hi Pando Team <span className={styles.agentVerified}>✔</span>
-                  </div>
-                  <div className={styles.agentRole}>
-                    Verified Listing Partner · {property.community} Desk
-                  </div>
-                </div>
-              </div>
-              <EnquireButton className={`hp-btn ${styles.whatsappBtn}`} />
-            </div>
           </div>
 
           <aside className={styles.right}>
