@@ -4,7 +4,6 @@ import styles from "./details.module.css";
 import PropertyGallery from "@/components/PropertyGallery";
 import PropertyCard from "@/components/PropertyCard";
 import EnquireButton from "@/components/EnquireButton";
-import Footer from "@/components/Footer";
 import PropertyAiPanel from "@/components/property/PropertyAiPanel";
 import { properties } from "@/data/properties";
 import { bedroomLabel, formatPrice } from "@/lib/format";
@@ -56,7 +55,7 @@ export default function PropertyDetailsPage({ params }) {
         </div>
       </header>
 
-      <div className="hp-container">
+      <div className={`hp-container ${styles.body}`}>
         <div className={styles.titleBlock}>
           <span className={styles.verifiedTag}>✔ Verified Architectural Asset</span>
           <h1 className={styles.title}>{property.title}</h1>
@@ -162,7 +161,14 @@ export default function PropertyDetailsPage({ params }) {
         </div>
       </div>
 
-      <Footer />
+      <footer className={styles.bottomBar}>
+        <div className={`hp-container ${styles.bottomBarInner}`}>
+          <span>
+            ← Back to Properties · Hi Pando — Private Luxury Advisory
+          </span>
+          <span>DLD Escrow Blockchain Verified</span>
+        </div>
+      </footer>
     </main>
   );
 }
