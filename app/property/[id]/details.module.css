@@ -19,6 +19,7 @@
   gap: var(--hp-space-4);
   height: 52px;
   flex-wrap: wrap;
+  padding: 0 var(--hp-space-5);
 }
 
 .body {
@@ -27,6 +28,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  padding: 0 var(--hp-space-5);
 }
 
 .bottomBar {
@@ -45,6 +47,7 @@
   color: var(--hp-slate);
   font-weight: 600;
   flex-wrap: wrap;
+  padding: 0 var(--hp-space-5);
 }
 
 .backLink {
@@ -160,12 +163,12 @@
 
 .galleryCol {
   position: relative;
-  flex: 1 1 46%;
+  flex: 1 1 58%;
   min-width: 0;
 }
 
 .detailsCol {
-  flex: 1 1 54%;
+  flex: 1 1 42%;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -191,39 +194,42 @@
   border: 1px solid var(--hp-line-soft);
   border-radius: var(--hp-radius-lg);
   box-shadow: var(--hp-shadow-sm);
-  padding: var(--hp-space-4);
+  padding: var(--hp-space-3);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 6px;
 }
 
 .priceEyebrow {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.66rem;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--hp-slate);
-  margin-bottom: 4px;
 }
 
 .priceValue {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   font-weight: 800;
   color: var(--hp-ink);
   letter-spacing: -0.01em;
+  margin-bottom: 4px;
 }
 
 .priceActions {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
 }
 
 .whatsappBtn {
   background: #1f9d55;
   color: #fff;
+  padding: 9px 18px;
+  font-size: 0.85rem;
 }
 
 .whatsappBtn:hover {
@@ -232,6 +238,8 @@
 
 .vipBtn {
   white-space: nowrap;
+  padding: 9px 18px;
+  font-size: 0.85rem;
 }
 
 .metricsRow {

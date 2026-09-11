@@ -24,7 +24,7 @@ export default function PropertyDetailsPage({ params }) {
   return (
     <main className={styles.wrap}>
       <header className={styles.topbar}>
-        <div className={`hp-container ${styles.topbarInner}`}>
+        <div className={styles.topbarInner}>
           <Link href="/search" className={styles.backLink}>
             ← Back to Properties
           </Link>
@@ -46,7 +46,7 @@ export default function PropertyDetailsPage({ params }) {
         </div>
       </header>
 
-      <div className={`hp-container ${styles.body}`}>
+      <div className={styles.body}>
         <div className={styles.titleBlock}>
           <span className={styles.verifiedTag}>✔ Verified Architectural Asset</span>
           <h1 className={styles.title}>{property.title}</h1>
@@ -106,7 +106,7 @@ export default function PropertyDetailsPage({ params }) {
       </div>
 
       <footer className={styles.bottomBar}>
-        <div className={`hp-container ${styles.bottomBarInner}`}>
+        <div className={styles.bottomBarInner}>
           <span>
             ← Back to Properties · Hi Pando — Private Luxury Advisory
           </span>
