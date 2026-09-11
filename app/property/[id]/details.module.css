@@ -1,15 +1,10 @@
 .wrap {
   background: var(--hp-bg);
-  height: calc(100dvh - 72px);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
 }
 
 .topbar {
   border-bottom: 1px solid var(--hp-line-soft);
   background: var(--hp-surface);
-  flex-shrink: 0;
 }
 
 .topbarInner {
@@ -23,31 +18,7 @@
 }
 
 .body {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  padding: 0 var(--hp-space-5);
-}
-
-.bottomBar {
-  flex-shrink: 0;
-  border-top: 1px solid var(--hp-line-soft);
-  background: var(--hp-surface);
-}
-
-.bottomBarInner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--hp-space-4);
-  height: 40px;
-  font-size: 0.74rem;
-  color: var(--hp-slate);
-  font-weight: 600;
-  flex-wrap: wrap;
-  padding: 0 var(--hp-space-5);
+  padding: 0 var(--hp-space-5) var(--hp-space-4);
 }
 
 .backLink {
@@ -114,7 +85,6 @@
 
 .titleBlock {
   padding-top: var(--hp-space-3);
-  flex-shrink: 0;
 }
 
 .verifiedTag {
@@ -147,32 +117,21 @@
 .layout {
   display: grid;
   grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
-  gap: var(--hp-space-6);
-  align-items: stretch;
+  gap: var(--hp-space-5);
+  align-items: start;
   margin-top: var(--hp-space-3);
-  padding-bottom: var(--hp-space-4);
-  flex: 1;
-  min-height: 0;
 }
 
 .left {
   display: flex;
-  gap: var(--hp-space-4);
+  flex-direction: column;
+  gap: var(--hp-space-3);
   min-width: 0;
 }
 
 .galleryCol {
   position: relative;
-  flex: 1 1 58%;
-  min-width: 0;
-}
-
-.detailsCol {
-  flex: 1 1 42%;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--hp-space-3);
+  height: 300px;
 }
 
 .galleryBadge {
@@ -220,9 +179,8 @@
 
 .priceActions {
   display: flex;
-  flex-direction: column;
-  gap: 6px;
-  width: 100%;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .whatsappBtn {
@@ -244,7 +202,7 @@
 
 .metricsRow {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--hp-space-3);
 }
 
@@ -282,25 +240,15 @@
 }
 
 @media (max-width: 980px) {
-  .wrap {
-    height: auto;
-  }
-  .body {
-    overflow: visible;
-  }
   .layout {
     grid-template-columns: 1fr;
   }
-  .left {
-    flex-direction: column;
+  .metricsRow {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 560px) {
-  .priceCard {
-    flex-direction: column;
-    align-items: flex-start;
-  }
   .topbarInner {
     height: auto;
     padding: var(--hp-space-3) 0;
